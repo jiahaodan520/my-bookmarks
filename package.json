@@ -1,0 +1,10 @@
+{
+  "name": "bookmark-nav",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Encrypted browser bookmarks synchronized to GitHub and rendered by GitHub Pages.",
+  "scripts": {
+    "check": "node scripts/check.mjs"
+  }
+}

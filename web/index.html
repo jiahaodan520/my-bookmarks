@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10251d">
+  <meta name="description" content="你的加密个人书签导航页">
+  <title>Bookmark Nav</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23176b4d'/%3E%3Cpath d='M18 34.5 29 45l20-25' fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='7'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Bookmark Nav 首页">
+        <span class="brand-icon">↗</span>
+        <span>Bookmark Nav</span>
+      </a>
+      <div class="top-actions">
+        <span id="bookmarkMeta" class="meta-label">等待解锁</span>
+        <button id="themeToggle" class="icon-button" type="button" aria-label="切换主题" title="切换主题">◐</button>
+        <button id="lockButton" class="text-button hidden" type="button">锁定</button>
+      </div>
+    </header>
+
+    <main>
+      <section id="loadingView" class="center-view" aria-live="polite">
+        <div class="loader"></div>
+        <p>正在读取加密书签…</p>
+      </section>
+
+      <section id="unlockView" class="center-view hidden" aria-labelledby="unlockTitle">
+        <div class="unlock-card">
+          <div class="unlock-orbit"><span>✦</span></div>
+          <p class="eyebrow">PRIVATE BOOKMARK SPACE</p>
+          <h1 id="unlockTitle">你的链接，<em>只给你看。</em></h1>
+          <p class="lead">书签文件存放在 GitHub，但只有你本地输入的口令能解开它。口令不会发送给服务器。</p>
+          <form id="unlockForm" class="unlock-form">
+            <label class="sr-only" for="passphrase">加密口令</label>
+            <div class="input-wrap">
+              <input id="passphrase" type="password" autocomplete="current-password" placeholder="输入加密口令" required>
+              <button id="revealPassphrase" class="reveal-button" type="button" aria-label="显示口令">显示</button>
+            </div>
+            <button class="unlock-button" type="submit">解锁我的书签 <span>→</span></button>
+          </form>
+          <p id="unlockError" class="form-error" role="alert"></p>
+          <p class="unlock-hint">提示：也可以使用带有 <code>#k=</code> 的私密链接快速解锁。</p>
+        </div>
+      </section>
+
+      <section id="emptyView" class="center-view hidden" aria-live="polite">
+        <div class="empty-icon">◎</div>
+        <p class="eyebrow">NO SNAPSHOT YET</p>
+        <h1>还没有首次同步</h1>
+        <p class="lead">请在浏览器扩展中配置 GitHub 仓库，然后执行一次全量同步。</p>
+      </section>
+
+      <section id="appView" class="hidden" aria-label="书签导航">
+        <div class="welcome-row">
+          <div>
+            <p class="eyebrow">YOUR PERSONAL INDEX</p>
+            <h1>今天想去哪里？</h1>
+          </div>
+          <div class="updated-box">
+            <span>最近更新</span>
+            <strong id="updatedAt">—</strong>
+          </div>
+        </div>
+
+        <div class="search-row">
+          <label class="search-box" for="searchInput">
+            <span class="search-symbol">⌕</span>
+            <input id="searchInput" type="search" placeholder="搜索书签、域名或文件夹…" autocomplete="off">
+            <kbd>/</kbd>
+          </label>
+          <button id="clearSearch" class="clear-button hidden" type="button">清除</button>
+        </div>
+
+        <div id="searchSummary" class="search-summary hidden"></div>
+
+        <div class="content-layout">
+          <aside class="sidebar" aria-label="书签文件夹">
+            <div class="sidebar-heading">
+              <span>文件夹</span>
+              <span id="folderCount" class="count-badge">0</span>
+            </div>
+            <nav id="folderNav" class="folder-nav"></nav>
+          </aside>
+          <section class="bookmark-area">
+            <div id="breadcrumbs" class="breadcrumbs"></div>
+            <div id="bookmarkGrid" class="bookmark-grid"></div>
+            <div id="noResults" class="no-results hidden">
+              <div class="no-results-icon">⌕</div>
+              <h2>没有找到匹配的书签</h2>
+              <p>换一个关键词试试看。</p>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span>本地解密 · GitHub 存储 · 不请求第三方图标</span>
+      <a href="https://github.com/" target="_blank" rel="noreferrer">由 GitHub Pages 提供支持 ↗</a>
+    </footer>
+  </div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>

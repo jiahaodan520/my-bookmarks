@@ -1,0 +1,19 @@
+# Local/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Temporary test output
+.tmp/
+coverage/
+
+# Never commit local secrets or exported backups
+*.backup.html
+*.secret.json
+
+# The encrypted bookmark snapshot is intentionally tracked after first sync.
+# Do not add a blanket rule for data/*.json.
+
+# Generated distribution artifacts
+/dist/

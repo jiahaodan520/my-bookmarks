@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bookmark Nav</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <main class="popup">
+    <header>
+      <div class="logo">↗</div>
+      <div>
+        <p class="eyebrow">BOOKMARK NAV</p>
+        <h1>同步状态</h1>
+      </div>
+    </header>
+    <div id="repo" class="repo">尚未配置 GitHub 仓库</div>
+    <div id="state" class="state"><span class="dot"></span><span>读取中…</span></div>
+    <dl class="stats">
+      <div><dt>上次同步</dt><dd id="lastSync">—</dd></div>
+      <div><dt>书签数量</dt><dd id="count">—</dd></div>
+    </dl>
+    <div id="error" class="error"></div>
+    <div class="buttons">
+      <button id="sync" class="primary">立即同步</button>
+      <button id="settings" class="secondary">打开设置</button>
+    </div>
+  </main>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

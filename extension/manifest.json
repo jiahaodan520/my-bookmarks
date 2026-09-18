@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Bookmark Nav Sync",
+  "version": "0.1.0",
+  "description": "将 Chrome/Edge 书签加密同步到 GitHub，并生成个人导航页。",
+  "permissions": [
+    "bookmarks",
+    "storage",
+    "alarms"
+  ],
+  "host_permissions": [
+    "https://api.github.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_title": "Bookmark Nav Sync",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html"
+}

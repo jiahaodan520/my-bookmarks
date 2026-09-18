@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bookmark Nav Sync 设置</title>
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <main class="shell">
+    <header class="hero">
+      <div class="brand-mark">↗</div>
+      <div>
+        <p class="eyebrow">BOOKMARK NAV SYNC</p>
+        <h1>把书签带到任何地方</h1>
+        <p class="subtitle">浏览器只负责捕获和加密，GitHub 负责版本存储，Pages 负责展示。</p>
+      </div>
+    </header>
+
+    <section class="card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">01 / STORAGE</p>
+          <h2>GitHub 仓库</h2>
+        </div>
+        <span class="pill">仅写入单个文件</span>
+      </div>
+      <div class="grid two-col">
+        <label>
+          <span>GitHub Owner</span>
+          <input id="owner" autocomplete="username" placeholder="your-name">
+        </label>
+        <label>
+          <span>Repository</span>
+          <input id="repo" placeholder="my-bookmarks">
+        </label>
+        <label>
+          <span>Branch</span>
+          <input id="branch" value="main" placeholder="main">
+        </label>
+        <label>
+          <span>同步文件</span>
+          <input value="data/bookmarks.enc.json" disabled>
+        </label>
+      </div>
+      <label>
+        <span>Fine-grained Personal Access Token</span>
+        <input id="token" type="password" autocomplete="new-password" placeholder="github_pat_...">
+        <small>只授予目标仓库的 Contents: Read and write。Token 仅保存在此浏览器的扩展存储中。</small>
+      </label>
+    </section>
+
+    <section class="card accent-card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">02 / PRIVACY</p>
+          <h2>加密口令</h2>
+        </div>
+        <span class="pill green">AES-GCM-256</span>
+      </div>
+      <label>
+        <span>书签加密口令</span>
+        <input id="passphrase" type="password" autocomplete="new-password" placeholder="至少 12 个字符">
+        <small>口令不会上传 GitHub，也不会离开本地扩展。口令丢失后无法从密文恢复，请另行导出明文备份。</small>
+      </label>
+      <label>
+        <span>再次输入口令</span>
+        <input id="passphraseConfirm" type="password" autocomplete="new-password" placeholder="确认口令">
+      </label>
+    </section>
+
+    <section class="actions card">
+      <div class="button-row">
+        <button id="save" class="button primary">保存配置</button>
+        <button id="test" class="button secondary">测试 GitHub 连接</button>
+        <button id="sync" class="button secondary">立即全量同步</button>
+        <button id="export" class="button ghost">导出明文备份</button>
+      </div>
+      <div id="message" class="message" role="status" aria-live="polite"></div>
+    </section>
+
+    <section class="notes">
+      <h2>部署提醒</h2>
+      <ul>
+        <li>公开仓库只会看到 AES 密文；网页需要同一个口令才能解锁。</li>
+        <li>GitHub Pages 是公开可访问的静态站点，隐私依赖加密，不依赖私有仓库。</li>
+        <li>每次同步都会生成一次 Git commit，可以在误删时从历史恢复密文版本。</li>
+      </ul>
+    </section>
+  </main>
+  <script type="module" src="options.js"></script>
+</body>
+</html>
