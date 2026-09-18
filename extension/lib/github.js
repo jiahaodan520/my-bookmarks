@@ -30,6 +30,9 @@ async function parseResponse(response) {
 async function request(path, token, options = {}) {
   const response = await fetch(`${API_BASE}${path}`, {
     ...options,
+    // Never serve file SHAs from the HTTP cache: a stale SHA makes the next
+    // PUT fail with "does not match <sha>" even though nothing else changed.
+    cache: "no-store",
     headers: {
       ...authHeaders(token),
       ...(options.headers || {})
